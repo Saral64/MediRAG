@@ -1,6 +1,6 @@
-# MedRAG
+# MediRAG
 
-**MedRAG** (Medical Retrieval-Augmented Generation) is a lightweight medical question-answering system built using Google Gemini and a custom retrieval mechanism. It can answer medical questions using a local mini-corpus or generate answers directly via Gemini when relevant documents are not found.
+**MediRAG** (Medical Retrieval-Augmented Generation) is a lightweight medical question-answering system built using Google Gemini and a custom retrieval mechanism. It can answer medical questions using a local mini-corpus or generate answers directly via Gemini when relevant documents are not found.
 
 ---
 
