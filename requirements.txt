@@ -1,0 +1,16 @@
+# Core dependencies
+torch>=2.0.0
+faiss-cpu==1.12.0
+tqdm==4.67.1
+numpy>=1.24.0
+transformers==4.57.0
+sentence-transformers==5.1.1
+datasets==4.2.0
+
+# Gemini + LLM integration
+google-generativeai==0.8.5  # Official Gemini SDK
+
+# RAG and retrieval utilities
+langchain==0.3.27
+pyserini==1.2.0
+tiktoken==0.12.0
