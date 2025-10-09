@@ -35,20 +35,6 @@ setx GOOGLE_API_KEY "your_api_key"
 
 ---
 
-## Folder Structure
-
-MedRAG/
-├─ src/
-│  ├─ medrag.py           # Main MedRAG class
-│  ├─ utils.py            # Retriever and embedding utilities
-│  └─ template.py         # Templates for prompts
-├─ corpus/
-│  └─ wikipedia/          # Mini Wikipedia corpus
-├─ main.py                # Example usage
-└─ README.md
-
----
-
 ## Usage
 
 from src.medrag import MedRAG
