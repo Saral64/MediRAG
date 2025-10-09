@@ -37,9 +37,9 @@ setx GOOGLE_API_KEY "your_api_key"
 
 ## Usage
 
-from src.medrag import MedRAG
+from src.medrag import MediRAG
 
-# Initialize MedRAG
+# Initialize MediRAG
 
 model = MedRAG(
 llm_name="gemini-2.5-flash",
