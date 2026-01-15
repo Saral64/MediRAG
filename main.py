@@ -52,7 +52,7 @@ with st.sidebar:
         st.markdown("### ⚙️ Configuration")
         st.info(f"""
         - **System:** RAG Enabled
-        - **Corpus:** Wikipedia
+        - **Corpus:** Openfda
         - **Model:** Gemini-2.5-Flash
         """)
     
@@ -65,7 +65,7 @@ def load_model():
     return MedRAG(
         llm_name="gemini-2.5-flash",
         rag=True,
-        corpus_name="wikipedia"
+        corpus_name="openfda"
     )
 
 model = load_model()
@@ -96,7 +96,7 @@ if question:
                 st.markdown(answer)
                 
                 # Optional: Add a 'Disclaimer' footer to every response
-                st.caption("Sources used: Wikipedia Medical Corpus. Response generated via RAG.")
+                st.caption("Sources used: Openfda Medical Corpus. Response generated via RAG.")
                 
             except Exception as e:
                 st.error("An error occurred while processing the request.")
