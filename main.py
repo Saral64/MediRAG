@@ -89,14 +89,15 @@ if question:
         with st.spinner("Analyzing medical literature..."):
             try:
                 # k=0 is passed as per your original code
-                answer = model.medrag_answer(question, k=0)
+                answer= model.medrag_answer(question, k=5)
                 
                 # Split answer into summary and details if applicable
                 st.markdown("### Clinical Response")
                 st.markdown(answer)
                 
-                # Optional: Add a 'Disclaimer' footer to every response
-                st.caption("Sources used: Openfda Medical Corpus. Response generated via RAG.")
+                
+
+                st.caption("Sources used: OpenFDA Medical Corpus. Response generated via RAG.")
                 
             except Exception as e:
                 st.error("An error occurred while processing the request.")
