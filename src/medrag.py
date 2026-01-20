@@ -51,6 +51,24 @@ class MedRAG:
                 w.lower() for w in re.findall(r"[a-zA-Z]+", text)
                 if w.lower() not in all_stops and len(w) > 2
         }
+    
+    def _extract_medical_concepts(self, question):
+         prompt = f"""
+                   Extract only medical concepts from the query.
+                   Remove intent, tone, and explanation-related words.
+                   Return a comma-separated list. No explanation.
+
+                   Query:
+                   {question}
+                """
+         try:
+           response = self.model.generate_content(prompt)
+           text = response.text.strip()
+        # safety: fallback to original question if extraction fails
+           return text if text else question
+         except Exception:
+           return question
+
 
     def _evidence_strength(self, docs, question):
         if not docs: return "LOW"
@@ -79,13 +97,13 @@ class MedRAG:
         if avg_top_score >= 0.55 and supporting_docs >= 1: return "MEDIUM"
         return "LOW"
 
-    def _is_ddi_query(self, question, docs):
-        intent_words = {"interact", "interaction", "combined", "combine", "combines", "together", "co-administered", "concurrent", "versus", "vs"}
+    def _is_ddi_query(self, question, docs, concept_query=None):
+        intent_words = {"interact", "interaction", "interacts", "combined", "combine", "combines", "react", "reaction", "reacts", "reacted", "combination", "together", "co-administered", "concurrent", "versus", "vs"}
         has_intent = any(w in question.lower() for w in intent_words)
         
         # Count unique drugs mentioned in the question that appear in our retrieved titles
         detected_drugs = set()
-        q_lower = question.lower()
+        q_lower = f"{question} {concept_query}".lower() if concept_query else question.lower()
         for d in docs:
             title = d["title"].lower()
             # If the drug title (e.g. "Potassium Phosphate") is in the question
@@ -109,15 +127,17 @@ class MedRAG:
         evidence = "LOW"
         docs = []
 
+        concept_query = question
         if self.retrieval_system and k > 0:
             # Increase K slightly for DDI to get both drug labels
-            ddi_keywords = ["interact", "combine", "interacts", "combines", "combined"]
+            ddi_keywords = ["interact", "combine", "interacts", "combines", "combined","reacts", "react"]
             search_k = k + 3 if any(kw in question.lower() for kw in ddi_keywords) else k
-            docs = self.retrieval_system.get_relevant_documents(question, search_k)
+            concept_query = self._extract_medical_concepts(question)
+            docs = self.retrieval_system.get_relevant_documents(concept_query, search_k)
             context_text = "\n".join(f"SOURCE [{d['title']}]: {d['content']}" for d in docs)
-            evidence = self._evidence_strength(docs, question)
+            evidence = self._evidence_strength(docs, concept_query)
 
-        ddi_mode = self._is_ddi_query(question, docs)
+        ddi_mode = self._is_ddi_query(question, docs, concept_query)
 
         if ddi_mode:
             # Override system prompt for DDI to ensure structure
