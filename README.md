@@ -189,8 +189,6 @@ streamlit run main.py
 
 ---
 
----
-
 ## MIT License
 
 Copyright <YEAR> <COPYRIGHT HOLDER>
