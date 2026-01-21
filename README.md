@@ -1,8 +1,8 @@
-# MediRAG 🩺
+# DrugIntelRAG 🩺
 
-MediRAG is a **clinical-grade Retrieval-Augmented Generation (RAG) system** designed for medical question answering with explicit **evidence strength estimation** and **drug–drug interaction (DDI) analysis**. It combines a curated OpenFDA corpus, FAISS-based semantic retrieval, and Google's Gemini models to produce structured, safety-aware medical responses.
+DrugIntelRAG is a **clinical-grade Retrieval-Augmented Generation (RAG) system** designed for medical question answering with explicit **evidence strength estimation** and **drug–drug interaction (DDI) analysis**. It combines a curated OpenFDA corpus, FAISS-based semantic retrieval, and Google's Gemini models to produce structured, safety-aware medical responses.
 
-> ⚠️ **Disclaimer**: MediRAG is for research and informational purposes only. It is not a substitute for professional medical advice.
+> ⚠️ **Disclaimer**: DrugIntelRAG is for research and informational purposes only. It is not a substitute for professional medical advice.
 
 ---
 
@@ -47,7 +47,7 @@ Structured Clinical Response
 ## Repository Structure
 
 ```
-MediRAG/
+DrugIntelRAG/
 ├── corpus/
 │   └── openfda/
 │       ├── chunk/              # Chunked OpenFDA corpus (JSONL)
@@ -116,8 +116,8 @@ DDI responses follow a **strict clinical structure**:
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/your-username/MediRAG.git
-cd MediRAG
+git clone https://github.com/your-username/DrugIntelRAG.git
+cd DrugIntelRAG
 ```
 
 ### 2. Install Dependencies
