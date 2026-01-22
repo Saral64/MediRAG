@@ -4,7 +4,7 @@ from src.medrag import MedRAG
 
 # ---------- PAGE CONFIG ----------
 st.set_page_config(
-    page_title="MediRAG | AI Medical Assistant",
+    page_title="DrugIntelRAG | AI Medical Assistant",
     page_icon="🩺",
     layout="wide", # Wider layout for a more professional feel
     initial_sidebar_state="expanded"
@@ -44,7 +44,7 @@ st.markdown("""
 with st.sidebar:
     # Use a large emoji instead of a URL to avoid loading issues
     st.markdown("<h1 style='text-align: center; font-size: 60px; margin-bottom: 0;'>🩺</h1>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center; margin-top: 0;'>MediRAG</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; margin-top: 0;'>DrugIntelRAG</h3>", unsafe_allow_html=True)
     st.divider()
     
     # Using a container for the configuration box
@@ -71,7 +71,7 @@ def load_model():
 model = load_model()
 
 # ---------- HEADER ----------
-st.markdown('<h1 class="main-title">MediRAG</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="main-title">DrugIntelRAG</h1>', unsafe_allow_html=True)
 st.markdown("##### *Advanced Clinical Reasoning & Knowledge Retrieval*")
 st.divider()
 
@@ -111,3 +111,4 @@ if not question:
         <p>Enter a query below to start the medical analysis.</p>
     </div>
     """, unsafe_allow_html=True)
+
